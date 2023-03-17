@@ -18,8 +18,8 @@ Exclusions: We have only considered .wav music files as our input. Any other fil
 
 Assumptions:
 - The length of the music file has been assumed to be at least 30 seconds for audio segmentation of data.
-- Only one musical file format is considered (.wav).
 - Only a set of predefined genres have been considered for our project.
+- Only one musical file format is considered (.wav).
 
 Aniket Das (AniketDas13)
 
