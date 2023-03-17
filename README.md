@@ -14,6 +14,13 @@ The dataset used in the project has been provided for reference:
 - A collection of 10 genres with 100 audio files each, all having a length of 30 seconds
 - 70/30 train/test split
 
+Exclusions: We have only considered .wav music files as our input. Any other file format is excluded from the input range.
+
+Assumptions:
+- The length of the music file has been assumed to be at least 30 seconds for audio segmentation of data.
+- Only one musical file format is considered (.wav).
+- Only a set of predefined genres have been considered for our project.
+
 Aniket Das (AniketDas13)
 
 Other Team Members:
