@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Music Genre Classification System</title>
+    <script>
+        predict = function(){
+            const formData = new FormData();
+            const fileField = document.querySelector('input[type="file"]');
+            formData.append('the_file', fileField.files[0]);
+
+            fetch('http://localhost:5000/prediction', {
+            method: 'POST',
+            body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+            console.log('Success:', result);
+            var obj = JSON.parse(JSON.stringify(result));
+            console.log('Object:', obj.genre);
+            document.getElementById("genre").innerHTML = "Predicted genre is \"" + obj.genre + "\"!";
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            document.getElementById("genre").innerHTML = "Can't predict the genre! Check the file type!";
+            });
+        }
+    </script>
+</head>
+
+<body style="background-image: url('images/background.jpg');">
+
+    <nav class="navbar navbar-dark bg-dark p-0">
+        <img style="padding-left: 10px;" src="images/tmsl-logo.jpg" height="50px"><br>
+        <a href="#" class="navbar-brand">FINAL YEAR PROJECT</a>
+    </nav>
+
+    <div class="container">
+        <div class="text-center" style="padding-top: 20px;">
+            <img src="images/head-1.png" height="100px"><br>
+            <img src="images/head-2.png" height="100px"><br>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <h2>Upload a music file</h2>
+            <div class="upload-container">
+                <div class="border-container">
+                    <button class="btn btn-secondary pt-1 font-weight-bold mr-2" onclick="document.getElementById('file_id').click()">Browse file in PC</button>
+                    <input type="file" id="file_id" style="display:none">
+                    <button class="btn btn-secondary pt-1 font-weight-bold ml-2" onclick="predict()">Upload & Predict</button>
+                    <p style="color:grey; font-size:15px;">(The track length should be at least 30 sec.)</p>
+                </div>
+            </div>
+        </div>
+        <h2 class="py-2" id="genre" type = "text"></h2>
+    </div>
+</body>
+
+<footer class="page-footer bg-dark">
+    <div class="footer-copyright text-center py-2">© 2021 Copyright: 
+        <a href="#"> MGCS.com</a>
+    </div>
+</footer>
+
+</html>
